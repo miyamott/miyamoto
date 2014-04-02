@@ -10,3 +10,8 @@ doubleSmallNumber' x= succ (doubleSmallNumber x)
 conanO'Brien = "It's a-me, Cnan O'Brien!"
 
 boomBangs xs = [ if x <10 then "BOOM!" else "BANG!" | x <- xs, odd x]
+
+addThree :: Int -> Int -> Int -> Int
+addThree x y z = x+y+z
+
+addThree' x y z = x+y+z
