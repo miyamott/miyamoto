@@ -30,3 +30,17 @@ calcBmis xs = [bmi | (w,h) <- xs , let bmi = w/ h^2]
 head' :: [a] -> a
 head' xs =case xs of [] -> error "No"
                      (x:_) -> x
+
+initials :: String -> String -> String
+initials firstname lastname = [f] ++ ". "  ++ [l] ++ "."
+    where (f:_) = firstname
+          (l:_) = lastname
+
+{- initials' :: String -> String -> String -}
+initials' firstname lastname = head [f|(f:_) <-firstname] : '.' : head [l|(l:_) <-lastname ] : ['.']
+
+initials'' firstname lastname = head firstname: '.' : head lastname : "." 
+
+calcBmis' :: [(Double,Double)] -> [Double]
+calcBmis' xs = [ bmiTell (bmi w h) | (w, h) <- xs]
+    where bmi weight height = weight / height^2
