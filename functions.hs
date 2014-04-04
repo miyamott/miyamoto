@@ -19,8 +19,15 @@ firstLetter :: String -> String
 firstLetter "" = " Empty"
 firstLetter all@(x:xs) = "The first letter of " ++ all ++ "is "++[x]
 
-bmiTell :: Double -> Double -> String
-bmiTell weight height
+bmiTell :: Double -> String
+bmiTell bmi
+  | bmi <= 18.5 = "You're underwight"
+  | bmi <= 25.0 = "You're normal"
+  | bmi <= 30.0 = "You're fat"
+  | otherwise   = "whale"
+ 
+bmiTell' :: Double -> Double -> String
+bmiTell' weight height
   | bmi <= 18.5 = "You're underwight"
   | bmi <= 25.0 = "You're normal"
   | bmi <= 30.0 = "You're fat"
@@ -40,21 +47,6 @@ head' :: [a] -> a
 head' xs =case xs of [] -> error "No"
                      (x:_) -> x
 
-<<<<<<< HEAD
-initials :: String -> String -> String
-initials firstname lastname = [f] ++ ". "  ++ [l] ++ "."
-    where (f:_) = firstname
-          (l:_) = lastname
-
-{- initials' :: String -> String -> String -}
-initials' firstname lastname = head [f|(f:_) <-firstname] : '.' : head [l|(l:_) <-lastname ] : ['.']
-
-initials'' firstname lastname = head firstname: '.' : head lastname : "." 
-
-calcBmis' :: [(Double,Double)] -> [Double]
-calcBmis' xs = [ bmiTell (bmi w h) | (w, h) <- xs]
-    where bmi weight height = weight / height^2
-=======
 add2vector :: (Double,Double) -> (Double,Double) -> (Double,Double)
 add2vector a b = ( fst a + fst b, snd a + snd b)
 
@@ -89,7 +81,20 @@ tell (x:y:z) = "many elements: " ++ show x ++ "and" ++ show y ++ "and etc"
 initialF :: [[Char]] -> [[Char]]
 initialF xs = [ all | all@('F':_) <- xs]
 
+initials :: String -> String -> String
+initials firstname lastname = [f] ++ ". "  ++ [l] ++ "."
+    where (f:_) = firstname
+          (l:_) = lastname
 
+{- initials' :: String -> String -> String -}
+initials' firstname lastname = head [f|(f:_) <-firstname] : '.' : head [l|(l:_) <-lastname ] : ['.']
 
+initials'' firstname lastname = head firstname: '.' : head lastname : "." 
 
->>>>>>> FETCH_HEAD
+calcBmis' :: [(Double,Double)] -> [Double]
+calcBmis' xs = [ bmi w h | (w, h) <- xs]
+    where bmi weight height = weight / height^2
+
+calcBmis'' :: [(Double,Double)] -> [String]
+calcBmis'' xs = [ bmiTell(bmi w h) | (w, h) <- xs]
+    where bmi weight height = weight / height^2
