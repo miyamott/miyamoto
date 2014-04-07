@@ -98,3 +98,9 @@ calcBmis' xs = [ bmi w h | (w, h) <- xs]
 calcBmis'' :: [(Double,Double)] -> [String]
 calcBmis'' xs = [ bmiTell(bmi w h) | (w, h) <- xs]
     where bmi weight height = weight / height^2
+
+elem' :: Eq a => a -> [a] -> Bool
+elem' _ [] = False 
+elem' a (x:xs)
+    | a == x  =  True
+    | otherwise = a `elem'` xs
