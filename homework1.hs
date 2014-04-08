@@ -1,7 +1,7 @@
-factorial'gard :: Integer -> Integer  
-factorial'gard n 
+factorial'guard :: Integer -> Integer  
+factorial'guard n 
     | n==0      = 1
-    | otherwise = n * factorial'gard (n-1)
+    | otherwise = n * factorial'guard (n-1)
 
 factorial'if :: Integer -> Integer 
 factorial'if n = if n == 0
