@@ -18,3 +18,12 @@ leapyear y
     | y `mod` 100 == 0 ="Not leap year"
     | y `mod` 4   == 0 = "Leap year"
     | otherwise        ="Not leap year"
+ 
+pair :: (a -> b, a -> c) -> a -> (b, c)
+pair (f, g) x = (f x, g x)
+
+cross :: (a -> b, c -> d) -> (a, c) -> (b, d)
+cross (f, g) = pair (f . fst, g . snd)
+
+leapyear' :: Int -> Bool
+leapyear' y = (y `mod` 4 ==0) && ( not (y `mod` 100 ==0)) || (y `mod` 400==0) 
