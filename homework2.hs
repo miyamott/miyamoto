@@ -18,7 +18,7 @@ euclidean a b = euclidean b (a `mod` b)
 
 {- flatten a given lists of list into list ver.1 -}
 flat' :: [[a]] -> [a]
-flat' [[]] = []
+flat' [[]] = [] {- [[]] is ok ,but also [] -}
 flat' (x:xs) = x ++ flat xs
 
 {- flatten a given lists of list into list ver.2 -}
