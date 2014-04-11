@@ -16,13 +16,13 @@ euclidean :: Integral a => a -> a -> a
 euclidean a 0 = a
 euclidean a b = euclidean b (a `mod` b) 
 
-{- flatten a given list of list into list ver.1 -}
-flat :: [[a]] -> [a]
-flat (x:[]) = x
-flat (x:xs) = x ++ flat xs
-
-{- flatten a given list of list into list ver.2 -}
+{- flatten a given lists of list into list ver.1 -}
 flat' :: [[a]] -> [a]
 flat' [[]] = []
 flat' (x:xs) = x ++ flat xs
+
+{- flatten a given lists of list into list ver.2 -}
+flat :: [[a]] -> [a]
+flat (x:[]) = x
+flat (x:xs) = x ++ flat xs
 
