@@ -1,17 +1,26 @@
-{- 引数に数のレンジを与えてFibonacci数列を作る関数-}
+{- A function that to make Fibonacci series due to give a numerical range to argument -}
 fibonacci :: [ Int ] -> [ Integer ]
 fibonacci n = [ f m | m <- n ] 
     where f 0 = 1
           f 1 = 1
           f m = f (m-1) + f(m-2) 
-{- Fibonacci数列の無限リストを作る関数-}
+{- A function that to make a infinite list of Fibonacci series -}
 fibonacci' :: [ Integer ]
 fibonacci' = [ f m | m <- [0..] ] 
     where f 0 = 1
           f 1 = 1
           f m = f(m-1) + f(m-2) 
 
-{- Euclid の互除法 -}
+{- Euclid algorithm -}
 euclidean :: Integral a => a -> a -> a
 euclidean a 0 = a
 euclidean a b = euclidean b (a `mod` b) 
+
+flat :: [[a]] -> [a]
+flat (x:[]) = x
+flat (x:xs) = x ++ flat xs
+
+flat' :: [[a]] -> [a]
+flat' [[]] = []
+flat' (x:xs) = x ++ flat xs
+
