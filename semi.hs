@@ -122,3 +122,81 @@ quicksort (x:xs) =
          larger         = [a | a <-xs , a > x]
          other          = [a | a <-xs , a == x]
     in   quicksort smallerOrEqual ++[x] ++ quicksort larger
+
+applyTwice :: (a -> a) -> a -> a
+applyTwice f x = f (f x)
+
+multthree :: Int -> Int -> Int -> Int 
+multthree x y z = x*y *z
+ 
+comparewithhundred :: Int -> Ordering
+comparewithhundred = compare 100 
+
+applytwice :: (a -> a) -> a -> a
+applytwice f x = f (f x)
+
+zipwith :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipwith _ [] _ = []
+zipwith _ _ [] = []
+zipwith f (x:xs) (y:ys) = f x y : zipwith f xs ys
+
+fliP :: (a -> b -> c) -> (b -> a -> c) 
+fliP f = g 
+    where g x y = f y x
+
+map' :: (a -> b) -> [a] -> [b]
+map' _ [] = []
+map' f (x:xs) = f x : map f xs
+
+filter' :: (a -> Bool) -> [a] -> [a]
+filter' _ [] = []
+filter' p (x:xs) 
+    |  p x     = x : filter p xs
+    |  otherwise = filter p xs
+
+largestdivisible :: Integer
+largestdivisible = head ( filter p [100000,99999..])
+    where p x = x `mod` 3829 == 0
+
+chain :: Integer -> [Integer]
+chain 1 = [1]
+chain n 
+    | even n = n :chain (n `div` 2)
+    | odd  n = n :chain (n *3 +1)
+
+numlongchains :: Int 
+numlongchains = length (filter ( \xs -> length xs > 15)
+                               (map chain [1..100]))
+
+sum' :: Num a => [a] -> a
+sum' xs = foldl (\acc x -> acc+x) 0 xs
+
+sum'' :: Num a => [a] -> a
+sum'' = foldl (+) 0 
+
+map'' :: (a-> b) -> [a] -> [b]
+map'' f xs = foldr (\x acc -> f x : acc) [] xs
+
+reverse' :: [a] -> [a]
+reverse' = foldl (\acc x -> x :acc) []
+
+product' :: Num a => [a] -> a
+product' = foldl (*) 1
+
+filter'' :: (a-> Bool ) -> [a] ->[a]
+filter'' p =foldr (\x acc -> if p x then x :acc else acc) []
+
+oddsquaresum :: Integer
+oddsquaresum = sum . takeWhile (<10000) .filter odd $ map (^2) [1..]
+
+
+
+
+
+
+
+
+
+
+
+
