@@ -189,11 +189,19 @@ filter'' p =foldr (\x acc -> if p x then x :acc else acc) []
 oddsquaresum :: Integer
 oddsquaresum = sum . takeWhile (<10000) .filter odd $ map (^2) [1..]
 
+{- numUniques :: Eq  => [a] -> Int -}
+{- numUniques = length . nub -}
 
+{- wordNums :: String -> [(String,Int)]
+wordNums = map ( \ws -> (head ws, length ws)) . (Data.List.group) . (Data.List.sort) . words
 
-
-
-
+findKey :: Eq k => k-> [(k,v)] -> Maybe v
+findKey key [] = Nothing
+findKey key ((k,v) :xs)
+    | key == k = Just v
+    | otherwise = findKey key xs
+-}
+main = putStrLn "hello, world"
 
 
 
